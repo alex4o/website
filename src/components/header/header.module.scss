@@ -1,0 +1,17 @@
+@import "styles/common.scss";
+
+.header {
+    background: $accent-color;
+    margin-bottom: 1.45rem;
+
+    .sub-header {
+        margin: 0 auto;
+        max-width: 960px;
+        padding: 1.45rem 1.0875rem;
+    }
+
+    & .link {
+        color: $front-color;
+        text-decoration: none;
+    }
+}

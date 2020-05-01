@@ -1,0 +1,18 @@
+@import 'common';
+
+html {
+	background-color: $base-color;
+	color: $front-color;
+	font-family: sans-serif;
+	box-sizing: border-box;
+
+	&,body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+	}
+
+	a {
+		color: $dark-blue;
+	}
+}

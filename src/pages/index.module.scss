@@ -1,0 +1,28 @@
+.main {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	& > * {
+		margin-top: 1.8em;
+	}
+
+	& > .navigation {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		width: 25vw;
+		
+	}
+	
+}
+
+
+.logo {
+	height: 50vh;
+}
+
+
+
