@@ -108,7 +108,9 @@ module.exports = {
 								title
 								tags
 								description
-								ingredients
+								ingredients {
+									name
+								}
 							}
 						}
 					}
@@ -124,7 +126,7 @@ module.exports = {
 					title: node.frontmatter.title,
 					slug: node.fields.slug,
 					description: node.frontmatter.description || node.excerpt,
-					ingredients: node.frontmatter.ingredients
+					ingredients: (node.frontmatter.ingredients || []).map(ingredient => ingredient.name).join(" ")
 				})),
 		}
 	}

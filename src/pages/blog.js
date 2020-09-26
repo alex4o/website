@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import { useFlexSearch } from 'react-use-flexsearch'
 
@@ -8,18 +8,17 @@ import SearchContext from "../context/search"
 
 import style from "./blog.module.scss"
 
-const Element = ({ id, title, slug, description, date }) => {
+const Element = ({ id, title, slug, description, date, tags }) => {
 	return (
 		<article className={`${style.article} ${style.container}`} key={id}>
-			<header className={style.header}>
-				<h2>
-					<Link style={{ boxShadow: `none` }} to={"/blog/" + slug}>
+			<Link style={{ boxShadow: `none` }} to={"/blog/" + slug}>
+				<header className={style.header}>
+					<h2>
 						{title}
-					</Link>
-				</h2>
-				<hr/>
-				{ date != null ? <small>Who else but me, on {date}</small> : <></> }
-			</header>
+					</h2>
+				</header>
+				<hr />
+			</Link>
 			<section>
 				<p
 					dangerouslySetInnerHTML={{
@@ -27,14 +26,17 @@ const Element = ({ id, title, slug, description, date }) => {
 					}}
 				/>
 			</section>
+			<hr />
+			{date ? <small>Who else but me, on {date}</small> : <></>}
+			{tags ? <small>Tags: {tags}</small>: <></> }
 		</article>
 	)
 }
 
 const BlogArticlePage = ({ data, navigation }) => {
 	const [query, setQuery] = useState(null)
-	const results = useFlexSearch(query, data.localSearchPosts.index, data.localSearchPosts.store) 
-    const posts = data.allMarkdownRemark.edges
+	const results = useFlexSearch(query, data.localSearchPosts.index, data.localSearchPosts.store)
+	const posts = data.allMarkdownRemark.edges
 	console.log(results, query, data.localSearchPosts)
 
 
@@ -43,16 +45,17 @@ const BlogArticlePage = ({ data, navigation }) => {
 		title: node.frontmatter.title || node.fields.slug,
 		slug: node.fields.slug,
 		description: node.frontmatter.description || node.excerpt,
-		date: node.frontmatter.date
+		date: node.frontmatter.date,
+		tags: (node.frontmatter.tags || []).join(" ")
 	}))
 
-    return (
-        <Layout title="A blog exploring the magic of wired hardware and software." search={setQuery}>
-            <SEO title="Blog" />
-			{(results.length == 0 ? elements : results).map((element) => 
-				<Element {...element}></Element> )}
-        </Layout>
-    )
+	return (
+		<Layout title="A blog exploring the magic of wired hardware and software." search={setQuery}>
+			<SEO title="Blog" />
+			{(results.length == 0 ? elements : results).map((element) =>
+				<Element {...element}></Element>)}
+		</Layout>
+	)
 }
 
 export default BlogArticlePage
@@ -80,6 +83,7 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+			tags
           }
         }
       }
