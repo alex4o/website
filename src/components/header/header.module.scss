@@ -1,17 +1,44 @@
 @import "styles/common.scss";
 
 .header {
-    background: $accent-color;
-    margin-bottom: 1.45rem;
+    display: flex;
+    border: 1px solid $accent-color;
+    color: $front-color;
+    padding: 1em;
+	margin: 1em 1em 0em 1em;
+    text-align: center;
+    justify-content: center;
+    background-color: darken($color: $base-color, $amount: 3%);
+	font-weight: 100;
+	font-size: 1em;
 
+    
     .sub-header {
-        margin: 0 auto;
-        max-width: 960px;
-        padding: 1.45rem 1.0875rem;
+        // padding: 1em;  
+    }
+
+    & h1 {
+        text-decoration: none;
+    }
+
+    & h3 {
+        // padding-bottom: .5em;
+        // font-size: 4em;
+        // font-weight: 500;
+        text-decoration: none;
+
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
 
     & .link {
         color: $front-color;
         text-decoration: none;
     }
+}
+
+    
+.loader {
+    // width: 100%;
+    border-bottom: 2px solid $accent-color;
 }

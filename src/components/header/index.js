@@ -3,17 +3,25 @@ import PropTypes from "prop-types"
 import React from "react"
 
 import style from "./header.module.scss"
+import Logo from "../../assets/logo.svg"
 
-const Header = ({ siteTitle }) => (
-	<header className={style.header}>
-		<div className={style.subHeader}>
-			<h1 style={{ margin: 0 }}>
-				<Link to="/blog" className={style.link}>
-					{siteTitle}
-				</Link>
-			</h1>
-		</div>
-	</header>
+const Title = ({ title }) => {
+		return (	
+			<h2 style={{ margin: 0, fontWeight: 300 }}>
+				{title}
+			</h2>
+		)
+}
+
+const Header = ({ title }) => (
+	<Link to="/blog" style={{ textDecoration: "none" }}>
+		<header className={style.header}>
+			<div className={style.subHeader}>
+				<Title title={title} />
+			</div>
+		</header>
+		<div className={style.loader} style={{ width: `${0}%` }}></div>
+	</Link>
 )
 
 Header.propTypes = {

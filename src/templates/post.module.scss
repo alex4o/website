@@ -1,0 +1,17 @@
+@import "styles/common";
+
+.bread-crumbs {
+    margin: 0;
+    line-height: 2em;
+    & span {
+        color: $accent-color;
+        font-weight: 800;
+        font-size: 1.2em;
+    }
+}
+
+.article {
+	padding: 1em;
+	margin: 1em;
+	border: 1px solid $accent-color;
+}

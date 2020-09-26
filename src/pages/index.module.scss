@@ -4,24 +4,31 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;	
 
-	& > * {
-		margin-top: 1.8em;
+	h1 {
+		font-weight: 100 !important;
+		white-space: nowrap;
+		margin: 2em;
 	}
 
 	& > .navigation {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
-		width: 25vw;
-		
+		width: 25vw;	
 	}
-	
 }
 
 
 .logo {
+	
 	height: 50vh;
+
+	@media screen and (max-width: 900px) {
+		transform: scale(0.6);
+	}
+
 }
 
 

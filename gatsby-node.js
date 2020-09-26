@@ -22,6 +22,9 @@ exports.createPages = async ({ graphql, actions }) => {
 		  edges {
 			node {
 			  id
+			  fields {
+				  slug
+			  }
 			  frontmatter {
 				title
 			  }
@@ -44,10 +47,11 @@ exports.createPages = async ({ graphql, actions }) => {
 		const next = index === 0 ? null : posts[index - 1].node
 
 		createPage({
-			path: "/blog/" + post.node.id,
+			path: "/blog" + post.node.fields.slug,
 			component: blogPost,
 			context: {
-				id: post.node.id,
+				// id: post.node.id,
+				slug: post.node.fields.slug,
 				previous,
 				next,
 			},

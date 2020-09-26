@@ -10,8 +10,6 @@ import Logo from "../assets/logo_animated.svg"
 
 import style from "./index.module.scss"
 
-console.log(style)
-
 const IndexPage = () => {
 
   return (
@@ -20,8 +18,8 @@ const IndexPage = () => {
       <Logo className={style.logo}/>
       <h1>Aleksandar Bonin</h1>
       <div className={style.navigation}>
-        <Button to="/resume">
-          Resume
+        <Button to="/about">
+          About me
         </Button>
         <Button to="/blog">
           Blog

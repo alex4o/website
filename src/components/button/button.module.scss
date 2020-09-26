@@ -8,7 +8,7 @@ $color : $accent-color;
 
 .link-button {
   a {
-    color: white;
+    color: $front-color;
     padding: $pad $extra;
     display: inline-block;
     border: $thick solid transparent;
@@ -17,6 +17,7 @@ $color : $accent-color;
     font-size: 1.5em;
     cursor: pointer;
     letter-spacing: 0.07em;
+	white-space: nowrap;
 
     .text {
       // padding: 0 0.3em;

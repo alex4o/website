@@ -3,8 +3,6 @@ import { Link } from "gatsby"
 
 import style from "./button.module.scss"
 
-console.log(style)
-
 const Button = ({ children, ...other }) => (
 	<section className={style.linkButton}>
 		<Link {...other}>

@@ -1,9 +1,11 @@
 @import 'common';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 
 html {
 	background-color: $base-color;
 	color: $front-color;
-	font-family: sans-serif;
+	font-family: $main-font;
 	box-sizing: border-box;
 
 	&,body {
@@ -14,5 +16,10 @@ html {
 
 	a {
 		color: $dark-blue;
+		text-decoration: none;
+	}
+
+	h1 {
+		font-size: 3em;
 	}
 }

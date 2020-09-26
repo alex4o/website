@@ -2,7 +2,7 @@ const path = require("path")
 
 module.exports = {
   siteMetadata: {
-    title: `Bonin's blog`,
+    title: `Bonin's website`,
     description: ``,
     author: `@alex4o`,
   },
@@ -40,6 +40,7 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          `gatsby-remark-slug`
         ],
       },
     },
@@ -62,7 +63,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-optimize-svgs',
@@ -82,7 +83,51 @@ module.exports = {
         pages: path.join(__dirname, 'src/pages'),
         styles: path.join(__dirname, 'src/styles')
       }
-    }
+    },
+	{
+		resolve: 'gatsby-plugin-local-search',
+		options: {
+			name: "posts",
+			engine: "flexsearch",
+			engineOptions: {
+				encode: "advanced",
+				tokenize: "reverse",
+				suggest: true,
+				cache: true
+			},
+			query: `
+				{
+					allMarkdownRemark {
+						nodes {
+							id
+							excerpt
+							fields {
+								slug
+							}
+      						frontmatter {
+								title
+								tags
+								description
+								ingredients
+							}
+						}
+					}
+				}
+			`,
+			ref: 'id',
+			index: ['title', 'tags'],
+			store: ['id', 'title', 'slug', 'description', 'tags'],
+			normalizer: ({ data }) => 
+				data.allMarkdownRemark.nodes.map(node => ({
+					id: node.id,
+					tags: node.frontmatter.tags != null ? node.frontmatter.tags.join(" ") : "",
+					title: node.frontmatter.title,
+					slug: node.fields.slug,
+					description: node.frontmatter.description || node.excerpt,
+					ingredients: node.frontmatter.ingredients
+				})),
+		}
+	}
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

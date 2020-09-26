@@ -2,6 +2,89 @@
 
 .page {
     margin: 0 auto;
-    max-width: 960px;
     padding: 0 1.0875rem 1.45rem;
+
+    width: 800px;
+
+    @media screen and (max-width: 1400px) {
+		margin: 0;
+	}
+
+	@media screen and (max-width: 1076px) {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
 }
+
+.layout {
+   main {
+	   positon: relative;
+   }
+}
+
+.navigation {
+	position: fixed;
+	left: calc(((100vw - 800px)/2) + 820px);
+	margin-top: 0.8em;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+
+	@media screen and (max-width: 1076px) {
+		position: relative;
+		flex-direction: row;
+		left: unset;
+		justify-content: space-around;
+		align-items: baseline;
+		margin: 1em;
+	}
+
+    @media screen and (min-width: 1076px) and (max-width: 1400px) {
+		left: 820px;
+	}
+	a {
+		font-size: 1.8em;
+		color: $front-color;
+		margin-bottom: 1em;
+		position: relative;
+		font-weight: 300;
+
+		@media screen and (max-width: 1076px) {
+			margin-bottom: 0;
+			font-size: 1.3em;
+		}
+		
+		&:after {
+			content: "";
+			width: 0%;
+			height: 1px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			transition: all .3s;
+			background-color: $accent-color;
+		}
+
+		&:hover:after {
+			width: 100%;
+		}
+	}
+
+	input {
+		border: 1px solid $accent-color;
+		background: rgba(0,0,0,0);
+		padding: 0.5em;
+		vertical-align: top;
+		color: $front-color;
+		font-size: 1.5em;
+		font-family: monospace;
+		outline: unset !important;
+
+		@media screen and (max-width: 480px) {
+			margin-top: 1em;
+			flex-basis: 100%;
+		}
+	}
+}
+
