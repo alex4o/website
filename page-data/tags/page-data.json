@@ -1,1 +1,1 @@
-{"componentChunkName":"component---src-pages-tags-js","path":"/tags/","result":{"pageContext":{}}}
+{"componentChunkName":"component---src-pages-tags-js","path":"/tags/","result":{"data":{"allMarkdownRemark":{"nodes":[{"fields":{"tags":null}},{"fields":{"tags":["python","numpy","blas","gpu"]}},{"fields":{"tags":["low-code","hasura","graphql","backend","postgres"]}},{"fields":{"tags":["rpg","table-top"]}},{"fields":{"tags":["recepie","gluten-free"]}}]}},"pageContext":{}}}
