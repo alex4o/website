@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 
 // import Bio from "../components/bio"
 import Layout from "../components/layout"
+import Ingredients from "../components/ingredients"
 import SEO from "../components/seo"
 import style from "./post.module.scss"
 
@@ -20,9 +21,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 				description={post.frontmatter.description || post.excerpt}
 			/>
 			<article className={style.article}>
-				<div style={{ display: "flex", flexWrap: "wrap" }}>
-					{post.frontmatter.ingredients != null ? post.frontmatter.ingredients.map(ingredient => <span style={{ flexBasis: "50%" }}>{ingredient.q} {ingredient.unit} - {ingredient.name}</span>) : <></>}
-				</div>
+				<Ingredients ingredients={post.frontmatter.ingredients}></Ingredients>
 				<section dangerouslySetInnerHTML={{ __html: post.html }} />
 				<hr
 					style={{
