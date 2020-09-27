@@ -84,18 +84,18 @@ module.exports = {
         styles: path.join(__dirname, 'src/styles')
       }
     },
-	{
-		resolve: 'gatsby-plugin-local-search',
-		options: {
-			name: "posts",
-			engine: "flexsearch",
-			engineOptions: {
-				encode: "advanced",
-				tokenize: "reverse",
-				suggest: true,
-				cache: true
-			},
-			query: `
+    {
+      resolve: 'gatsby-plugin-local-search',
+      options: {
+        name: "posts",
+        engine: "flexsearch",
+        engineOptions: {
+          encode: "icase",
+          tokenize: "full",
+          suggest: true,
+          cache: true
+        },
+        query: `
 				{
 					allMarkdownRemark {
 						nodes {
@@ -116,20 +116,27 @@ module.exports = {
 					}
 				}
 			`,
-			ref: 'id',
-			index: ['title', 'tags'],
-			store: ['id', 'title', 'slug', 'description', 'tags'],
-			normalizer: ({ data }) => 
-				data.allMarkdownRemark.nodes.map(node => ({
-					id: node.id,
-					tags: node.frontmatter.tags != null ? node.frontmatter.tags.join(" ") : "",
-					title: node.frontmatter.title,
-					slug: node.fields.slug,
-					description: node.frontmatter.description || node.excerpt,
-					ingredients: (node.frontmatter.ingredients || []).map(ingredient => ingredient.name).join(" ")
-				})),
-		}
-	}
+        ref: 'id',
+        index: ['title', 'tags', 'description', 'ingredients'],
+        store: ['id', 'title', 'slug', 'description', 'tags'],
+        normalizer: ({ data }) =>
+          data.allMarkdownRemark.nodes.map(node => ({
+            id: node.id,
+            title: node.frontmatter.title || node.fields.slug,
+            slug: node.fields.slug,
+            description: node.frontmatter.description || node.excerpt,
+            date: node.frontmatter.date,
+            tags: (node.frontmatter.tags || []),
+            ingredients: (node.frontmatter.ingredients || []).map(ingredient => ingredient.name)
+          })),
+      }
+    },
+    {
+      resolve: "gatsby-plugin-tags",
+      options: {
+        templatePath: `${__dirname}/src/templates/tag.js`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

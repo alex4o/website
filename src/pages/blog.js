@@ -5,39 +5,25 @@ import { useFlexSearch } from 'react-use-flexsearch'
 import Layout from "../components/layout/"
 import SEO from "../components/seo"
 import SearchContext from "../context/search"
+import BlogItem from "../components/blog-item/"
+import Fuse from 'fuse.js'
 
-import style from "./blog.module.scss"
 
-const Element = ({ id, title, slug, description, date, tags }) => {
-	return (
-		<article className={`${style.article} ${style.container}`} key={id}>
-			<Link style={{ boxShadow: `none` }} to={"/blog/" + slug}>
-				<header className={style.header}>
-					<h2>
-						{title}
-					</h2>
-				</header>
-				<hr />
-			</Link>
-			<section>
-				<p
-					dangerouslySetInnerHTML={{
-						__html: description
-					}}
-				/>
-			</section>
-			<hr />
-			{date ? <small>Who else but me, on {date}</small> : <></>}
-			{tags ? <small>Tags: {tags}</small>: <></> }
-		</article>
-	)
-}
 
+let fuse = null
 const BlogArticlePage = ({ data, navigation }) => {
 	const [query, setQuery] = useState(null)
 	const results = useFlexSearch(query, data.localSearchPosts.index, data.localSearchPosts.store)
+	console.log(data)
+
+	let articles = Object.values(data.localSearchPosts.store)
+
+	if (fuse == null){
+		fuse = new Fuse(articles, {   includeMatches: true, isCaseSensitive: false, includeScore: true, keys: ["tags", "title"] })
+	}
+
 	const posts = data.allMarkdownRemark.edges
-	console.log(results, query, data.localSearchPosts)
+	console.log(results, fuse, fuse.search(query || ""), query)
 
 
 	const elements = posts.map(({ node }) => ({
@@ -46,14 +32,14 @@ const BlogArticlePage = ({ data, navigation }) => {
 		slug: node.fields.slug,
 		description: node.frontmatter.description || node.excerpt,
 		date: node.frontmatter.date,
-		tags: (node.frontmatter.tags || []).join(" ")
+		tags: (node.frontmatter.tags || [])
 	}))
 
 	return (
 		<Layout title="A blog exploring the magic of wired hardware and software." search={setQuery}>
 			<SEO title="Blog" />
 			{(results.length == 0 ? elements : results).map((element) =>
-				<Element {...element}></Element>)}
+				<BlogItem {...element}></BlogItem>)}
 		</Layout>
 	)
 }

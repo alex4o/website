@@ -11,6 +11,8 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 	const siteTitle = data.site.siteMetadata.title
 	const { previous, next } = pageContext
 
+
+
 	return (
 		<Layout location={location} title={post.frontmatter.title} post={true}>
 			<SEO
@@ -18,6 +20,9 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 				description={post.frontmatter.description || post.excerpt}
 			/>
 			<article className={style.article}>
+				<div style={{ display: "flex", flexWrap: "wrap" }}>
+					{post.frontmatter.ingredients != null ? post.frontmatter.ingredients.map(ingredient => <span style={{ flexBasis: "50%" }}>{ingredient.q} {ingredient.unit} - {ingredient.name}</span>) : <></>}
+				</div>
 				<section dangerouslySetInnerHTML={{ __html: post.html }} />
 				<hr
 					style={{
@@ -90,6 +95,11 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+		ingredients {
+			name
+			q
+			unit
+		}
       }
     }
   }
