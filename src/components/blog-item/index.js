@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 const BlogItem = ({ id, title, slug, description, date, tags }) => {
     return (
         <article className={`${style.article} ${style.container}`} key={id}>
-            <Link style={{ boxShadow: `none` }} to={"/blog/" + slug}>
+            <Link style={{ boxShadow: `none` }} to={"/blog" + slug}>
                 <header className={style.header}>
                     <h2>
                         {title}

@@ -1,5 +1,4 @@
 const path = require("path")
-
 module.exports = {
   siteMetadata: {
     title: `Bonin's website`,
@@ -24,6 +23,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
+        gfm: true,
         plugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -31,15 +31,9 @@ module.exports = {
               maxWidth: 590,
             },
           },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
+          // `gatsby-remark-smartypants`,
           `gatsby-remark-slug`
         ],
       },
