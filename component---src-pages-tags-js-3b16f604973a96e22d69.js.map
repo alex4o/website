@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/pages/tags.js"],"names":["TagListPage"],"mappings":"2FAAA,gCAOeA,UALK,WAEnB,OAAQ","file":"component---src-pages-tags-js-3b16f604973a96e22d69.js","sourcesContent":["import React from \"react\"\n\nconst TagListPage = () => {\n\n\treturn (<span>TagList</span>)\n}\n\nexport default TagListPage\n"],"sourceRoot":""}
