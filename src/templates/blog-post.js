@@ -20,8 +20,19 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 				title={post.frontmatter.title}
 				description={post.frontmatter.description || post.excerpt}
 			/>
+			<header style={{ display: "flex", margin: "0px 20px" }}>
+				<span>
+					{post.frontmatter.date}
+				</span>
+				<span>·</span>
+				<span>
+					{post.timeToRead} min read
+				</span>
+			</header>
 			<article className={style.article}>
 				<Ingredients ingredients={post.frontmatter.ingredients}></Ingredients>
+				
+				
 				<section dangerouslySetInnerHTML={{ __html: post.html }} />
 				<hr
 					style={{
@@ -31,18 +42,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 				<footer>
 					{/* <Bio /> */}
 				</footer>
-				<header>
-					<p
-						style={{
-							//   ...scale(-1 / 5),
-							display: `block`,
-							//   marginBottom: rhythm(1),
-						}}
-					>
-						Posted on: {post.frontmatter.date}
-					</p>
-				</header>
-
 				<nav>
 					<ul
 						style={{
@@ -85,6 +84,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug }}) {
       id
+	  timeToRead
       excerpt(pruneLength: 160)
       fields {
         slug

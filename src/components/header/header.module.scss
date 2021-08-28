@@ -2,13 +2,13 @@
 
 .header {
     display: flex;
-    border: 1px solid $accent-color;
+    border-bottom: 1px solid $accent-color;
     color: $front-color;
     padding: 1em;
 	margin: 1em 1em 0em 1em;
     text-align: center;
     justify-content: center;
-    background-color: darken($color: $base-color, $amount: 3%);
+    // background-color: darken($color: $base-color, $amount: 3%);
 	font-weight: 100;
 	font-size: 1em;
 

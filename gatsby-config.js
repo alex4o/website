@@ -1,4 +1,5 @@
 const path = require("path")
+const { node } = require("prop-types")
 module.exports = {
   siteMetadata: {
     title: `Bonin's website`,
@@ -29,7 +30,8 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
-            },
+              showCaptions: ['title']
+            }
           },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
@@ -98,9 +100,10 @@ module.exports = {
 							fields {
 								slug
 							}
-      						frontmatter {
+      				frontmatter {
 								title
 								tags
+                hidden
 								description
 								ingredients {
 									name
@@ -114,7 +117,7 @@ module.exports = {
         index: ['title', 'tags', 'description', 'ingredients'],
         store: ['id', 'title', 'slug', 'description', 'tags'],
         normalizer: ({ data }) =>
-          data.allMarkdownRemark.nodes.map(node => ({
+          data.allMarkdownRemark.nodes.filter(node => !node.frontmatter.hidden).map(node => ({
             id: node.id,
             title: node.frontmatter.title || node.fields.slug,
             slug: node.fields.slug,

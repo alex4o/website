@@ -26,7 +26,7 @@ const BlogArticlePage = ({ data, navigation }) => {
 	console.log(results, fuse, fuse.search(query || ""), query)
 
 
-	const elements = posts.map(({ node }) => ({
+	const elements = posts.filter(({ node }) => !node.frontmatter.hidden).map(({ node }) => ({
 		id: node.id,
 		title: node.frontmatter.title || node.fields.slug,
 		slug: node.fields.slug,
@@ -70,6 +70,7 @@ export const pageQuery = graphql`
             title
             description
 			tags
+			hidden
           }
         }
       }

@@ -1,6 +1,6 @@
 @import 'common';
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
 
 body > div {
 	height: 100%;
@@ -8,6 +8,17 @@ body > div {
 
 #gatsby-focus-wrapper {
 	height: 100%;
+}
+
+.gatsby-highlight > pre {
+    background-color: darken($base-color, 5%);
+	color: $front-color;
+    display: block;
+    padding: 1em;
+    margin: 1em;
+    line-height: 1.2em;
+    font-size: 1.15em;
+	overflow-x: auto;
 }
 
 html {
@@ -18,7 +29,7 @@ html {
 	height: 100%;
 
 	&,body {
-	height: 100%;
+		height: 100%;
 		margin: 0;
 		height: 100%;
 		padding: 0;
@@ -31,7 +42,7 @@ html {
 		text-decoration: none;
 	}
 
-	h1 {
+	h1.front-page {
 		font-size: 3em;
 
 		@media screen and (max-width: 380px) {
@@ -42,5 +53,14 @@ html {
 			font-size: 1.8em;
 		}
 
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Source Sans Pro', sans-serif;
+		text-align: left;
+	}
+
+	header > span {
+		margin-right: 5px;
 	}
 }

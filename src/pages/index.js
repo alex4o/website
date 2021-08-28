@@ -16,7 +16,7 @@ const IndexPage = () => {
     <main className={style.main}>
       <SEO title="Home" />
       <Logo className={style.logo}/>
-      <h1>Aleksandar Bonin</h1>
+      <h1 className="front-page">Aleksandar Bonin</h1>
       <div className={style.navigation}>
         <Button to="/about">
           About me

@@ -13,7 +13,27 @@
 .article {
 	padding: 1em;
 	margin: 1em;
-	border: 1px solid $accent-color;
+	// border: 1px solid $accent-color;
+    font-size: 1.15em;
+    line-height: 1.8em;
+    color: $blog-font-color;
+
+    @media screen and (max-width: 1000px) {
+	    margin: 0em;
+
+    }
+}
+
+figcaption {
+    font-size: 11pt;
+}
+
+p > code {
+    background-color: lighten($color: $base-color, $amount: 10%);
+    border: 1px lighten($color: $base-color, $amount: 20%);
+    font-size: 1.15em;
+    padding: 2px 5px;
+    margin: 2px;
 }
 
 table {

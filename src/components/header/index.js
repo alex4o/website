@@ -6,9 +6,9 @@ import style from "./header.module.scss"
 
 const Title = ({ title }) => {
 		return (	
-			<h2 style={{ margin: 0, fontWeight: 300 }}>
+			<h1 style={{ margin: 0, fontWeight: 300 }}>
 				{title}
-			</h2>
+			</h1>
 		)
 }
 
