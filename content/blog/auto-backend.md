@@ -20,9 +20,10 @@ Although there are other options for running automatically running GraphQL queri
 
 These are headless CMS systems that support graphql and are open source (Self-hosted).
 
-- [strapi](https://github.com/strapi/strapi)
-- [Sanity](https://github.com/sanity-io/sanity)
-- [Directus](https://github.com/directus/directus)
+- [strapi](https://github.com/strapi/strapi) node.js
+- [Sanity](https://github.com/sanity-io/sanity) node.js
+- [Directus](https://github.com/directus/directus) node.js has a version that was in PHP
+- [Squidex](https://github.com/Squidex/squidex) uses .net instead of node.js
 
 These are projects that replace `airtable` but can also be headless CMS es.
 
